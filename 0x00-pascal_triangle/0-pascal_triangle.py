@@ -1,4 +1,18 @@
 def pascal_triangle(n):
+    """
+    Generate Pascal's triangle up to the given number of rows.
+
+    Args:
+        n (int): The number of rows to generate in Pascal's triangle.
+
+    Returns:
+        list: Pascal's triangle represented as a list of lists.
+
+    Raises:
+        TypeError: If the input n is not an integer.
+        ValueError: If the input n is less than or equal to 0.
+    """
+
     if isinstance(n, int):
         if n <= 0:
             return []
@@ -12,9 +26,3 @@ def pascal_triangle(n):
             pascal[i][i] = 1
 
         return pascal
-
-
-triangle = pascal_triangle(5)
-
-for row in triangle:
-    print("[{}]".format(",".join([str(x) for x in row])))
