@@ -1,20 +1,40 @@
 #!/usr/bin/python3
+
 def canUnlockAll(boxes):
-    if len(boxes) == 0:
+    """
+    Function: can_unlock_all()
+
+    Description:
+    Determines if all the boxes can be unlocked based on the given list of boxes.
+    A key with the same number as a box opens that box.
+
+    Parameters:
+    - boxes (list[list]): A list of lists representing the boxes and their corresponding keys.
+
+    Return Type:
+    bool: True if all boxes can be opened, False otherwise.
+
+    Additional Considerations:
+    - The first box (boxes[0]) is assumed to be unlocked.
+    - The function checks for valid box structures and keys.
+
+    """
+
+    if not all(isinstance(box, list) for box in boxes):
+        print('La boîte doit contenir que des boîtes')
         return False
 
-    opened_boxes = set()
+    if (boxes[0] == [0] or boxes[0] == [] or
+            not all(isinstance(cle, int) for cle in boxes[0])):
+        print('La boîte [0] doit contenir une clé valide')
+        return False
 
-    opened_boxes.add(0)
+    # Create a list of box numbers starting from 1
+    numero_box = list(range(1, len(boxes)))
 
-    key_stack = boxes[0]
+    for box_index, box in enumerate(boxes):
+        for key in box:
+            if key != box_index and key in numero_box:
+                numero_box.remove(key)
 
-    while key_stack:
-        key = key_stack.pop()
-
-        if key < len(boxes) and key not in opened_boxes:
-            opened_boxes.add(key)
-
-            key_stack.extend(boxes[key])
-
-    return len(opened_boxes) == len(boxes)
+    return len(numero_box) == 0
