@@ -1,40 +1,38 @@
 #!/usr/bin/python3
 
+"""Module solves lockboxes problem"""
+
 def canUnlockAll(boxes):
     """
-    Function: can_unlock_all()
-
-    Description:
-    Determines if all the boxes can be unlocked based on the given list of boxes.
-    A key with the same number as a box opens that box.
+    Solves the lockboxes problem.
 
     Parameters:
-    - boxes (list[list]): A list of lists representing the boxes and their corresponding keys.
+    - boxes (list): A list of lists representing the boxes 
 
-    Return Type:
-    bool: True if all boxes can be opened, False otherwise.
+    Returns:
+    - bool: True if all boxes can be opened, False otherwise.
 
-    Additional Considerations:
-    - The first box (boxes[0]) is assumed to be unlocked.
-    - The function checks for valid box structures and keys.
+    Description:
+    The canUnlockAll function determines if it is possible to 
+    unlock all the boxes based on the given list of boxes.
+    A key with the same number as a box opens that box.
 
     """
 
-    if not all(isinstance(box, list) for box in boxes):
-        print('La boîte doit contenir que des boîtes')
-        return False
+    # Create a list to keep track of the opened status of each box
+    opened = [False] * len(boxes)
+    opened[0] = True
 
-    if (boxes[0] == [0] or boxes[0] == [] or
-            not all(isinstance(cle, int) for cle in boxes[0])):
-        print('La boîte [0] doit contenir une clé valide')
-        return False
+    stack = [0]  
 
-    # Create a list of box numbers starting from 1
-    numero_box = list(range(1, len(boxes)))
+    while stack:
+        box = stack.pop()  
 
-    for box_index, box in enumerate(boxes):
-        for key in box:
-            if key != box_index and key in numero_box:
-                numero_box.remove(key)
+        
+        for key in boxes[box]:
 
-    return len(numero_box) == 0
+           
+            if key < len(boxes) and not opened[key]:
+                opened[key] = True 
+                stack.append(key)  
+    return all(opened)
