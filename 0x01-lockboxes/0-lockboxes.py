@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def canUnlockAll(boxes):
     if not all(isinstance(box, list) for box in boxes):
         print('La boîte doit contenir que des boîtes')
