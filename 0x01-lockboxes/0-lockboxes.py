@@ -1,23 +1,20 @@
 #!/usr/bin/python3
 def canUnlockAll(boxes):
-    if not all(isinstance(box, list) for box in boxes):
-        print('La boîte doit contenir que des boîtes')
+    if len(boxes) == 0:
         return False
 
-    if (
-        boxes[0] == [0]
-        or boxes[0] == []
-        or not all(isinstance(cle, int) for cle in boxes[0])
-    ):
-        print('La boîte [0] doit contenir une clé valide')
-        return False
+    opened_boxes = set()
 
-    numero_box = list(range(1,len(boxes)))
+    opened_boxes.add(0)
 
-    for box_index, box in enumerate(boxes):
-        for key in box:
-            if key != box_index and key in numero_box:
-                numero_box.remove(key)
+    key_stack = boxes[0]
 
-    return len(numero_box) == 0
+    while key_stack:
+        key = key_stack.pop()
 
+        if key < len(boxes) and key not in opened_boxes:
+            opened_boxes.add(key)
+
+            key_stack.extend(boxes[key])
+
+    return len(opened_boxes) == len(boxes)
