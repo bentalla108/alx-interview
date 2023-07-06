@@ -1,4 +1,4 @@
-def canUnlockAll(boxes: list[list]):
+def canUnlockAll(boxes):
     if not all(isinstance(box, list) for box in boxes):
         print('La boîte doit contenir que des boîtes')
         return False
@@ -17,6 +17,6 @@ def canUnlockAll(boxes: list[list]):
         for key in box:
             if key != box_index and key in numero_box:
                 numero_box.remove(key)
-                # print(key)
 
     return len(numero_box) == 0
+
