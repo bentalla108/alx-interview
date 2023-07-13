@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
-def minOperations(n):
+
+def minOperations(n: int) -> int:
     """
-    Calculates the fewest number of operations needed to result in exactly 'n' H characters.
+    Calculates the fewest number of operations
+     needed to result in exactly 'n' H characters.
 
     Args:
         n (int): The desired number of 'H' characters.
@@ -14,13 +16,10 @@ def minOperations(n):
         TypeError: If 'n' is not an integer.
 
     Example:
-        min_operations(9)  # Returns 6
+        minOperations(9)  # Returns 6
     """
-    if not isinstance(n, int):
-        raise TypeError("N must be an integer")
-    if n < 1:
+    if not isinstance(n, int) or n < 1:
         return 0
-
     op = n
     ctn = 0
     rest = 0
