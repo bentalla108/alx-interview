@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """"
-Calculates the fewest number of operations
-     needed to result in exactly 'n' H characters.
+Calculates the fewest number of operations needed
+to result in exactly 'n' H characters in the file.
 """
 
 
-def minOperations(n: int) -> int:
+def minOperations(n):
+
     """
     Args:
         n (int): The desired number of 'H' characters.
@@ -13,23 +14,25 @@ def minOperations(n: int) -> int:
     Returns:
         int: The minimum number of operations required.
 
-    Raises:
-        TypeError: If 'n' is not an integer.
+    If n is impossible to achieve, returns 0.
 
     Example:
-        minOperations(9)  # Returns 6
+        min_operations(9)  # Returns 6
     """
-    if not isinstance(n, int) or n < 1:
+    if n < 1:
         return 0
-    if n == 1:
-        return 1     
-    op = n
-    ctn = 0
-    rest = 0
 
-    while op != 1:
-        rest = op % 2
-        op = op // 2
-        ctn = ctn + 2
+    operations = 0
+    paste_count = 1
+    h_count = 1
 
-    return ctn + rest
+    while h_count < n:
+        if n % h_count == 0:
+            operations += 2
+            paste_count = h_count
+            h_count *= 2
+        else:
+            operations += 1
+            h_count += paste_count
+
+    return operations
