@@ -1,11 +1,12 @@
 #!/usr/bin/python3
+""""
+Calculates the fewest number of operations
+     needed to result in exactly 'n' H characters.
+"""
 
 
 def minOperations(n: int) -> int:
     """
-    Calculates the fewest number of operations
-     needed to result in exactly 'n' H characters.
-
     Args:
         n (int): The desired number of 'H' characters.
 
