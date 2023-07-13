@@ -3,7 +3,7 @@
 """Module solves lockboxes problem"""
 
 
-def can_unlock_all(boxes):
+def canUnlockAll(boxes):
     """
     Solves the lockboxes problem.
 
