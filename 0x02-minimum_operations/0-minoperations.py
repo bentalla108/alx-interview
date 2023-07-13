@@ -18,7 +18,7 @@ def minOperations(n: int) -> int:
     Example:
         minOperations(9)  # Returns 6
     """
-    if not isinstance(n, int) or n < 1:
+    if not isinstance(n, int):
         return 0
     op = n
     ctn = 0
